@@ -20,7 +20,7 @@ class MyApp extends StatelessWidget {
       ),
       home: BlocProvider(
         create: (context) => NameAgeBloc(),
-        child:  MyHomePage(),
+        child:  const MyHomePage(),
       ),
     );
   }

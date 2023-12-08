@@ -1,21 +1,20 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
-
-import 'name_age_state.dart';
-import 'agify_service.dart';
+import 'package:name_age_estimator/agify_service.dart';
+import 'package:name_age_estimator/name_age_state.dart';
 
 class NameAgeBloc extends Bloc<String, NameAgeState> {
   final AgifyService agifyService = AgifyService();
 
   NameAgeBloc() : super(NameAgeInitial()) {
     // Register an event handler for the String event type
-    on<String>((event, emit) {
+    on<String>((event, emit) async {
       // Your logic to handle the event goes here
       // For example, fetching age estimate and updating the state
-      addEventLogic(event, emit);
+      await addEventLogic(event, emit);
     });
   }
 
-  void addEventLogic(String event, Emitter<NameAgeState> emit) async {
+  Future<void> addEventLogic(String event, Emitter<NameAgeState> emit) async {
     try {
       // Simulate an asynchronous operation (e.g., API call)
       emit(NameAgeLoading()); // Update state to loading
